@@ -15,3 +15,5 @@ class ProductPageLocators(object):
     SUCCESS_MESSAGES = (By.CSS_SELECTOR, "#messages")
     TITLE = (By.CSS_SELECTOR, ".product_main :first-child")
     ALERT_TITLE = (By.CSS_SELECTOR, "#messages :nth-child(1) .alertinner :nth-child(1)")
+    PRICE = (By.CSS_SELECTOR, "div.product_main p.price_color")
+    ALERT_PRICE = (By.CSS_SELECTOR, "#messages :nth-child(3) strong")
