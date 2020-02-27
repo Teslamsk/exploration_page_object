@@ -1,3 +1,6 @@
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+
 from .locators import ProductPageLocators
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
@@ -28,5 +31,23 @@ class ProductPage(BasePage):
         assert price == alert_price, f"Error: Price ({price}) are not the same like in " \
                                      f"alert price ({alert_price})."
 
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
 
+        return False
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGES), \
+            "Success message is presented, but should not be"
+
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+        return True
