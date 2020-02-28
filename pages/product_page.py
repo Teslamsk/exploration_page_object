@@ -32,23 +32,10 @@ class ProductPage(BasePage):
         assert price == alert_price, f"Error: Price ({price}) are not the same like in " \
                                      f"alert price ({alert_price})."
 
-    def is_not_element_present(self, how, what, timeout=4):
-        try:
-            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
-        except TimeoutException:
-            return True
-
-        return False
-
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGES), \
-            "Success message is presented, but should not be"
+           "Success message is presented, but should not be"
 
-    def is_disappeared(self, how, what, timeout=4):
-        try:
-            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
-                until_not(EC.presence_of_element_located((how, what)))
-        except TimeoutException:
-            return False
-
-        return True
+    def should_success_message_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGES), \
+           "Success message is presented, but should not be"
