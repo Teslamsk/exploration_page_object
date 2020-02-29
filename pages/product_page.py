@@ -6,9 +6,10 @@ from .locators import ProductPageLocators
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
 from .login_page import LoginPage
-
+from .locators import BasketPageLocators
 
 class ProductPage(BasePage):
+
     # Описать в нем метод для добавления в корзину.
     def add_product_to_basket(self):
         link = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
@@ -39,3 +40,5 @@ class ProductPage(BasePage):
     def should_success_message_disappeared(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGES), \
            "Success message is presented, but should not be"
+
+
