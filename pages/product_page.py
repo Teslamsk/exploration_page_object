@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from .login_page import LoginPage
 from .locators import BasketPageLocators
 
+
 class ProductPage(BasePage):
 
     # Описать в нем метод для добавления в корзину.
