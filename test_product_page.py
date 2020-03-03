@@ -85,17 +85,13 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 @pytest.mark.authorised_user
 class TestUserAddToBasketFromProductPage:
 
-    # Да, я знаю, что использовать setup для манипуляций с браузером - значит использовать его не по назначению, однако
-    # через API с песочницей я не могу взаимодействовать. Поэтому демонстрирую знания про setup доступным способом.
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
-        page = LoginPage(browser, link)   # открыть страницу регистрации
+        page = LoginPage(browser, link)
         page.open()
-        email = str(time.time()) + "@fakemail.org"
-        password = str(int(time.time()))
-        page.register_new_user(email, password)  # зарегистрировать нового пользователя
-        page.should_be_authorized_user()  # проверить, что пользователь залогинен
+        page.register_new_user()
+        page.should_be_authorized_user()
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):

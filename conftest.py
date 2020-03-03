@@ -3,11 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.chrome.options import Options
 
-# Дорогой друг. Пишу по-русски, потому что ты можешь не знать английского (ну мало ли, китайский учил?).
-# Обрати внимание, что у меня в конструкторе браузера для FireFox прописан путь до ланчера.
-# Сделано это так потому, что по-другому не работает. Если решишь запустить браузер еще и в FireFox -
-# сначала укажи правильный путь к ланчеру. Остальные комментарии на английском, потому что так надо.
-
 
 def pytest_addoption(parser):
     # Parameterization of the test by the browser
@@ -25,9 +20,7 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="function")
 def browser(request):
 
-    # Enter the browser_name parameter in the browser constructor
     browser_name = request.config.getoption("browser_name")
-    # Enter the language parameter in the browser constructor
     language = request.config.getoption("language")
     browser = None
 
