@@ -35,21 +35,22 @@ def test_guest_should_see_login_form(browser):
     page.open()
     page.should_be_login_form()
 
+
 def test_guest_should_see_register_form(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
     page = LoginPage(browser, link)
     page.open()
     page.should_be_register_form()
 
+
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
     page = MainPage(browser, link)
-    page.open()                                   # Гость открывает главную страницу
-    page.go_to_basket_page()                      # Переходит в корзину по кнопке в шапке сайта
+    page.open()
+    page.go_to_basket_page()
     basket_page = BasketPage(browser, browser.current_url)
-    basket_page.basket_should_be_empty()          # Ожидаем, что в корзине нет товаров
-    basket_page.should_be_text_basket_empty()     # Ожидаем, что есть текст о том что корзина пуста
-
+    basket_page.basket_should_be_empty()
+    basket_page.should_be_text_basket_empty()
 
 
 
